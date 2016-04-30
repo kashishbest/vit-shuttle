@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: kashishsinghal
+Implementation-Vendor-Id: your.group.id
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8.0_60
+

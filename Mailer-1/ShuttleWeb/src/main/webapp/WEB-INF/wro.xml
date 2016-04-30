@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://www.isdc.ro/wro">
+
+    <!-- CSS URL Rewriting fails when using webjar resource locator:
+         https://github.com/alexo/wro4j/issues/127 -->
+    <group name="main">
+        <css>/styles/mail.css</css>
+        <css>/styles/material.min.css</css>
+        <css>/styles/jquery.dataTables.css</css>
+        <css>/styles/dataTables.tableTools.css</css>
+        <js>/scripts/material.js</js>
+        <js>/scripts/mail.js</js>
+        <js>/scripts/jquery.min.js</js>
+        <js>/scripts/datatables/jquery.dataTables.js</js>
+    </group>
+</groups>

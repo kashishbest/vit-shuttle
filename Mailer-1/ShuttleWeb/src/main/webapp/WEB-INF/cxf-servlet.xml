@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+            http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+
+    <jaxws:endpoint id="testService" implementor="#testManager" address="/testService"/>
+    <jaxws:endpoint id="shuttleService" implementor="#shuttleManager" address="/shuttleService"/>
+
+    <bean id="jaxrs-data-binding" class="org.apache.cxf.jaxrs.provider.JAXRSDataBinding">
+        <property name="provider" ref="jaxbProviderSoap"/>
+    </bean>
+    <bean id="jaxbProviderSoap" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider"/>
+
+    <jaxrs:server address="/api">
+    <jaxrs:features>
+        <cxf:logging/>
+    </jaxrs:features>
+    <jaxrs:serviceBeans>
+        <ref bean="testManager"/>
+        <ref bean="shuttleManager"/>
+
+    </jaxrs:serviceBeans>
+    <jaxrs:providers>
+        <ref bean="jsonProvider"/>
+    </jaxrs:providers>
+    <jaxrs:extensionMappings>
+        <entry key="json" value="application/json"/>
+        <entry key="xml" value="application/xml"/>
+        <entry key="feed" value="application/atom+xml"/>
+    </jaxrs:extensionMappings>
+    </jaxrs:server>
+</beans>
